@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+</head>
+<body>
+    <h1>메인 페이지 </h1>
+    <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+    <!-- 아래 부분의 배너이미지가 관리자에서 등록된 데이터로 교체되면 됩니다. -->
+    <div class="home__slider">
+        <div class="bxslider">
+            <div th:each="x : ${banners}">
+                <a th:href="${x.linkUrl}" th:target="${x.target}"><img th:src="${x.urlFilename}"></a>
+            </div>
+            <!--
+            <div>
+                <a href="#"><img src="https://bxslider.com/assets/images/plant.jpg"></a>
+            </div>
+            -->
+        </div>
+
+    </div>
+
+
+    <script>
+        $(function(){
+            $('.bxslider').bxSlider({
+                mode: 'fade',
+                captions: true,
+                slideWidth: 800
+            });
+        });
+
+    </script>
+</body>
+</html>
